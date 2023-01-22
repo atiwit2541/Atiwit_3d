@@ -30,6 +30,30 @@ body { margin: 0; padding: 0; }
         pitch: 60,
         antialias: true // create the gl context with MSAA antialiasing, so custom layers are antialiased
     });
+       //เครื่องมือ
+    // Geocoder
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            mapboxgl: mapboxgl
+        })
+    );
+    //Geolocate
+    map.addControl(
+        new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            // When active the map will receive updates to the device's location as it changes.
+            trackUserLocation: true,
+            // Draw an arrow next to the location dot to indicate which direction the device is heading.
+            showUserHeading: true
+        })
+    );
+    //Fullscreen
+    map.addControl(new mapboxgl.FullscreenControl());
+    //Zoom
+    map.addControl(new mapboxgl.NavigationControl());
 
     // parameters to ensure the model is georeferenced correctly on the map
     const modelOrigin1 = [100.9292, 13.10067];
